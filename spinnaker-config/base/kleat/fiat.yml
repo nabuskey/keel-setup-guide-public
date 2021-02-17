@@ -1,0 +1,9 @@
+auth:
+  enabled: true
+  groupMembership:
+    file: {}
+    github:
+      accessToken: <TOKEN>
+      baseUrl: https://api.github.com
+      organization: testOrg
+    service: GITHUB

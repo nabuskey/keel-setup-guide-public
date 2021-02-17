@@ -1,0 +1,6 @@
+default:
+  bake:
+    account: test-1
+tasks:
+  executionWindow:
+    timezone: America/Los_Angeles

@@ -1,0 +1,8 @@
+spinnaker:
+  s3:
+    accessKeyId: <ID>
+    bucket: test-spinnaker-keel
+    enabled: true
+    region: us-west-2
+    rootFolder: front50
+    secretAccessKey: <SECRET>

@@ -1,0 +1,21 @@
+security:
+  oauth2:
+    client:
+      accessTokenUri: https://github.com/login/oauth/access_token
+      clientId: <CLIENT_ID>
+      clientSecret: <SECRET>
+      scope: user:email
+      userAuthorizationUri: https://github.com/login/oauth/authorize
+    enabled: true
+    resource:
+      userInfoUri: https://api.github.com/user
+    userInfoMapping:
+      email: email
+      lastName: name
+      username: login
+server:
+  ssl:
+    enabled: false
+services:
+  deck:
+    baseUrl: https://example.com

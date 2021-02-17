@@ -1,0 +1,22 @@
+aws:
+  accounts:
+  - accountId: "123"
+    assumeRole: role/spinnakerManaged
+    name: test-1
+    permissions:
+      EXECUTE:
+      - spinnaker-admin
+      READ:
+      - spinnaker-admin
+      WRITE:
+      - spinnaker-admin
+    regions:
+    - name: us-west-2
+  bakeryDefaults: {}
+  defaultKeyPairTemplate: '{{name}}-keypair'
+  defaultRegions:
+  - name: us-west-2
+  defaults:
+    iamRole: BaseIAMRole
+  enabled: true
+  primaryAccount: test-1

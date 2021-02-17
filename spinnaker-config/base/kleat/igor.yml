@@ -1,0 +1,2 @@
+dockerRegistry:
+  enabled: true

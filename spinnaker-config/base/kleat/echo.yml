@@ -1,0 +1,13 @@
+artifacts:
+  github:
+    accounts:
+    - name: test-git
+      token: <TOKEN>
+    enabled: true
+scheduler:
+  cron:
+    timezone: America/Los_Angeles
+stats:
+  deploymentMethod:
+    type: kleat
+    version: 0.6.0

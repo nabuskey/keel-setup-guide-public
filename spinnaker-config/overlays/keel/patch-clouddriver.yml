@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clouddriver
+  namespace: spinnaker
+spec:
+  template:
+    spec:
+      volumes:
+      - name: kubeconfig-volume
+        secret:
+          secretName: kubeconfig-deploy
+      - name: aws-managing
+        secret:
+          secretName: aws-managing       
+      containers:
+      - name: clouddriver
+        volumeMounts:
+        - mountPath: /var/kubeconfig
+          name: kubeconfig-volume
+        - mountPath:  /home/spinnaker/.aws
+          name: aws-managing
+          
