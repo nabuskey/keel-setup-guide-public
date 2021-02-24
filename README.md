@@ -11,6 +11,15 @@
   ### MySQL instance
   Can be a cloud managed MySQL instance, an instance running in Kubernetes, or on a VM. It just needs to be rechable by Keel.
 
+  This is only needed if you would like to create the database manually:
+  ```
+  CREATE DATABASE `keel` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+  GRANT
+  SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, LOCK TABLES, EXECUTE, SHOW VIEW, CREATE VIEW
+  ON `keel`.*
+  TO 'keel_service'@'%'; -- IDENTIFIED BY "password" if using password based auth
+  ```
   ### Keel service endpoint
   Keel service endpoint must be known by other serivces. Usually service endpoint information is configured in `/opt/spinnaker/config/spinnaker.yml` for each service, but this can be added to `<SERVICE>-local.yml` as well. Add the following to one of yml files.
   ```
@@ -96,7 +105,7 @@
 Follow [this guide](https://spinnaker.io/guides/user/managed-delivery/getting-started/) for quick start. 
 
 #### Notes
-1. The delivery config must reference a service account in the top level field `serviceAccount` e.g.
+1. The delivery config must reference a service account in the top level field `serviceAccount` e.g. Example of this is available in .spinnaker.yml
   ```
   name: test1
   application: keeltest
