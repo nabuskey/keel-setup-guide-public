@@ -1,0 +1,57 @@
+# This is an example of a delivery config
+# For kubernetes
+# other examples can be found here: https://github.com/nimakaviani/spin-md-test/tree/master/.spinnaker
+name: my-k8s-manifest
+application: test # the name of the application you created in spinnaker
+serviceAccount: test@spinnaker-test.net # the name of the service account that was created to run managed delivery instructions to create: https://spinnaker.io/setup/security/authorization/service-accounts/
+artifacts: []
+environments:
+  - name: testing
+    locations:
+      account: spinnaker-service-account # the kubernetes account that you would like to use for this managed delivery as defined in providers: kubernetes: accounts:
+      regions: []
+    resources:
+    - kind: k8s/resource@v1
+      spec:
+        metadata:
+          application: test # the name of the application you created in spinnaker
+        template:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: yollo-svc
+            namespace: default # the namespace that you would like to deploy this to, make sure the spinnaker instance has permissions to access this namespace as well
+            annotations:
+              app: hello
+          spec:
+            type: ClusterIP
+            ports:
+            - port: 80
+              targetPort: 80
+            selector:
+              app: hello
+    - kind: k8s/resource@v1
+      spec:
+        metadata:
+          application: test # the name of the application you created in spinnaker
+        template:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: yollo-deply
+            namespace: default # the namespace that you would like to deploy this to, make sure the spinnaker instance has permissions to access this namespace as well. Should be the same as above namespace      
+          spec:
+            replicas: 0
+            selector:
+              matchLabels:
+                app: hello
+            template:
+              metadata:
+                labels:
+                  app: hello                
+              spec:
+                containers:
+                - name: hello
+                  image: nginx:1.14.2
+                  ports:
+                  - containerPort: 80
