@@ -11,7 +11,7 @@ spec:
       - env:
         - name: JAVA_OPTS
           value: -XX:MaxRAMPercentage=50.0
-        image: us-docker.pkg.dev/spinnaker-community/docker/keel:spinnaker-master-latest-unvalidated
+        image: us-docker.pkg.dev/spinnaker-community/docker/keel:0.1.0-20210419190950-slim 
         name: keel
         ports:
         - name: traffic-port
